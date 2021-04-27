@@ -1,0 +1,18 @@
+several Assumptions:
+1. One user can only apply one coupon/gift credit at a time
+2. total is always much larger than discounts all the time
+3. Currently Jerry is only giving out these two kinds of discount credit, $10 and $20
+
+
+With the given data, my approaches would be in the following:
+1. I would have these two tables in two pandas data frame dfUser and dfPurchase
+2. From df.loc[dfPurchase['discounts']==20]], and df.loc[dfPurchase['discounts'==10]], I would get all the users who referred to other people, who got referred by other people, and those who don't use coupons at all.
+3. Number of referred users divide by number of referring users would give us the ratio of coupon which acquired new users
+4. Let's say the profit for Jerry is a% the total spent for each user. For people who use coupons, [(x*a%-10)*m+(y*a%-20)*n]/(m+n) would be the average profit per user. Then for those who don't use coupons, average profit per user z*a%. 
+x stands for the average total for users who used $10 coupon, y stands for the average total for users who used $20 coupon, z stands for average total for users who don't use coupons, m stands for the number of users who used $10 coupon, n stands for the number of users who used $10 coupon.
+
+Personal recommendations:
+1. Compare the results between [(x*a%-10)*m+(y*a%-20)*n]/(m+n) and z*a%, if the former is larger, than we are gaining more with the special reward programs.
+2. Comparing x, y, z from above may tell us if users are likely to spend more if they have coupons to use. 
+3. Even we might earn more from the special reward programs, it might not be the best strategy with $10 and $20, more market research could be done on how likely the user is going to spread out the referral message and how likely are they going to choose Jerry because of the coupon, and find out the potential best amount. Then we can try out the new strategy and compare the new average profit per user from the previous one.
+4. One potential further research: analyze the user information when they post on facebook, and give users who are more likely to get more referred users a larger discount, by using a "random" coupon generator(which is half random and half controlled). This would lower the lose when some users use their secondary account to get the discount and none of his/her friends sees the referral messages.
